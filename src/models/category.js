@@ -10,7 +10,7 @@ const insert = (data) => {
   return Pool.query(`INSERT INTO category (id,name) VALUES ('${id}','${name}')`);
 };
 const update = (id, name) => {
-  return Pool.query(`UPDATE category SET name='${name}' WHERE id=''${id}''`);
+  return Pool.query(`UPDATE category SET name='${name}' WHERE id='${id}'`);
 };
 const deleteData = (id) => {
   return Pool.query(`DELETE FROM category WHERE id='${id}'`);

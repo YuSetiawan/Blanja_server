@@ -16,7 +16,7 @@ const insert = (data) => {
 };
 const update = (data) => {
   const {id, name, stock, price, photo, description} = data;
-  return Pool.query(`UPDATE product SET name='${name}', stock=${stock}, price=${price} ,photo='${photo}' ,description='${description}' WHERE id=''${id}''`);
+  return Pool.query(`UPDATE product SET name='${name}', stock=${stock}, price=${price} ,photo='${photo}' ,description='${description}' WHERE id='${id}'`);
 };
 const deleteData = (id) => {
   return Pool.query(`DELETE FROM product WHERE id='${id}'`);
