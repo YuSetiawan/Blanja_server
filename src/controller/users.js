@@ -31,7 +31,7 @@ const userController = {
       console.log(error);
     }
   },
-  register: async (req, res, next) => {
+  registerSeller: async (req, res, next) => {
     try {
       const {email, password, fullname, role, phone, store_name} = req.body;
       const {rowCount} = await findEmail(email);
