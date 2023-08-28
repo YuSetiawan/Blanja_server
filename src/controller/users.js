@@ -1,6 +1,7 @@
 const {v4: uuidv4} = require('uuid');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const Joi = require('joi');
 const {findEmail, createUser, createSeller, allUser} = require('../models/users');
 const commonHelper = require('../helper/common');
 const authHelper = require('../helper/auth');
@@ -22,6 +23,19 @@ const userController = {
         fullname,
         role: 'customer',
       };
+      const schema = Joi.object().keys({
+        fullname: Joi.required(),
+        email: Joi.string().required(),
+        password: Joi.string().min(3).max(15).required(),
+        role: Joi.required(),
+      });
+      const {error, value} = schema.validate(req.body, {
+        abortEarly: false,
+      });
+      if (error) {
+        console.log(error);
+        return res.send(error.details);
+      }
       await createUser(data)
         .then((result) => commonHelper.response(res, result.rows, 201, 'created'))
         .catch((err) => res.send(err));
@@ -47,6 +61,21 @@ const userController = {
         phone,
         store_name,
       };
+      const schema = Joi.object().keys({
+        fullname: Joi.required(),
+        email: Joi.string().required(),
+        password: Joi.string().min(3).max(15).required(),
+        phone: Joi.any(),
+        store_name: Joi.required(),
+        role: Joi.required(),
+      });
+      const {error, value} = schema.validate(req.body, {
+        abortEarly: false,
+      });
+      if (error) {
+        console.log(error);
+        return res.send(error.details);
+      }
       await createSeller(data)
         .then((result) => commonHelper.response(res, result.rows, 201, 'created'))
         .catch((err) => res.send(err));

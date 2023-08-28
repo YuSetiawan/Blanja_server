@@ -2,6 +2,7 @@
 const {selectAll, select, countData, findId, insert, update, deleteData} = require('../models/products');
 const commonHelper = require('../helper/common');
 const {v4: uuidv4} = require('uuid');
+const Joi = require('joi');
 const cloudinary = require('../middlewares/cloudinary');
 
 const productController = {
@@ -50,6 +51,20 @@ const productController = {
       photo,
       description,
     };
+    const schema = Joi.object().keys({
+      name: Joi.required(),
+      stock: Joi.any().required(),
+      price: Joi.any().required(),
+      photo: Joi.required(),
+      description: Joi.string().required(),
+    });
+    const {error, value} = schema.validate(req.body, {
+      abortEarly: false,
+    });
+    if (error) {
+      console.log(error);
+      return res.send(error.details);
+    }
     insert(data)
       .then((result) => commonHelper.response(res, result.rows, 201, 'Create Product Success'))
       .catch((err) => res.send(err));
@@ -73,6 +88,20 @@ const productController = {
         photo,
         description,
       };
+      const schema = Joi.object().keys({
+        name: Joi.required(),
+        stock: Joi.any().required(),
+        price: Joi.any().required(),
+        photo: Joi.required(),
+        description: Joi.string().required(),
+      });
+      const {error, value} = schema.validate(req.body, {
+        abortEarly: false,
+      });
+      if (error) {
+        console.log(error);
+        return res.send(error.details);
+      }
       update(data)
         .then((result) => commonHelper.response(res, result.rows, 200, 'Product updated'))
         .catch((err) => res.send(err));
