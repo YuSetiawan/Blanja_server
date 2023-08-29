@@ -6,6 +6,7 @@ router
   .get('/', userController.user)
   .get('/profile', userController.profile)
   .get('/:id', userController.getselectUsers)
+  .put('/profile/:id', userController.updateImg)
   .post('/register', userController.register)
   .post('/registerSeller', userController.registerSeller)
   .post('/login', userController.login)

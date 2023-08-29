@@ -8,9 +8,9 @@ CREATE TABLE users(
     fullname VARCHAR,
     role VARCHAR,
     phone VARCHAR,
-    store_name VARCHAR
+    store_name VARCHAR,
+    photo VARCHAR
 );
-ALTER TABLE users ALTER COLUMN phone TYPE VARCHAR;
 
 
 CREATE TABLE product(
@@ -54,8 +54,7 @@ INSERT INTO address (name, address_as, address, phone, postal_code, city)
 VALUES ('John Doe', 'home', '123 Main Street', '123-456-7890', '12345', 'Cityville');
 
 
-ALTER TABLE product
-ADD category_id INT;
+ALTER TABLE users ADD photo VARCHAR;
 
 ALTER TABLE product
 ADD CONSTRAINT users_id FOREIGN KEY (users_id) REFERENCES users (id);

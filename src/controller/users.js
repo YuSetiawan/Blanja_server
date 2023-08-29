@@ -2,7 +2,8 @@ const {v4: uuidv4} = require('uuid');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Joi = require('joi');
-const {findEmail, createUser, createSeller, selectUsers, allUser} = require('../models/users');
+const cloudinary = require('../middlewares/cloudinary');
+const {findEmail, createUser, createSeller, selectUsers, allUser, updateImgUsers, findID} = require('../models/users');
 const commonHelper = require('../helper/common');
 const authHelper = require('../helper/auth');
 
@@ -118,6 +119,29 @@ const userController = {
     } = await findEmail(email);
     delete user.password;
     commonHelper.response(res, user, 200);
+  },
+
+  updateImg: async (req, res) => {
+    try {
+      const id = String(req.params.id);
+      const {rowCount} = await findID(id);
+      if (!rowCount) {
+        res.json({message: 'ID Not Found'});
+      }
+      const result = await cloudinary.uploader.upload(req.file.path);
+      const photo = result.secure_url;
+
+      const data = {
+        id,
+        photo,
+      };
+
+      updateImgUsers(data)
+        .then((result) => commonHelper.response(res, result.rows, 200, 'Update Users Success'))
+        .catch((err) => res.send(err));
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   refreshToken: (req, res) => {

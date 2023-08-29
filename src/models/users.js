@@ -16,6 +16,18 @@ const selectUsers = (id) => {
   return Pool.query(`SELECT * FROM users WHERE id = '${id}'`);
 };
 
+const findID = (id) => {
+  return new Promise((resolve, reject) =>
+    Pool.query(`SELECT * FROM users WHERE id= '${id}' `, (error, result) => {
+      if (!error) {
+        resolve(result);
+      } else {
+        reject(error);
+      }
+    })
+  );
+};
+
 const createUser = (data) => {
   const {id, email, passwordHash, fullname, role} = data;
   return new Promise((resolve, reject) =>
@@ -41,6 +53,12 @@ const createSeller = (data) => {
     })
   );
 };
+
+const updateImgUsers = (data) => {
+  const {id, photo} = data;
+  return Pool.query(`UPDATE users SET photo = '${photo}' WHERE id = '${id}'`);
+};
+
 const allUser = () => {
   return Pool.query(`SELECT * FROM users`);
 };
@@ -51,4 +69,6 @@ module.exports = {
   createSeller,
   allUser,
   selectUsers,
+  updateImgUsers,
+  findID,
 };
