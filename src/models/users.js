@@ -12,6 +12,10 @@ const findEmail = (email) => {
   );
 };
 
+const selectUsers = (id) => {
+  return Pool.query(`SELECT * FROM users WHERE id = '${id}'`);
+};
+
 const createUser = (data) => {
   const {id, email, passwordHash, fullname, role} = data;
   return new Promise((resolve, reject) =>
@@ -46,4 +50,5 @@ module.exports = {
   createUser,
   createSeller,
   allUser,
+  selectUsers,
 };

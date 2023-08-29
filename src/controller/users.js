@@ -2,7 +2,7 @@ const {v4: uuidv4} = require('uuid');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Joi = require('joi');
-const {findEmail, createUser, createSeller, allUser} = require('../models/users');
+const {findEmail, createUser, createSeller, selectUsers, allUser} = require('../models/users');
 const commonHelper = require('../helper/common');
 const authHelper = require('../helper/auth');
 
@@ -146,6 +146,15 @@ const userController = {
         message: 'something went wrong',
       });
     }
+  },
+
+  getselectUsers: async (req, res) => {
+    const id = String(req.params.id);
+    selectUsers(id)
+      .then((result) => {
+        commonHelper.response(res, result.rows, 200, 'Get User Detail Success');
+      })
+      .catch((err) => res.send(err));
   },
 };
 
