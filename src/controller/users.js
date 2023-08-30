@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 const cloudinary = require('../middlewares/cloudinary');
-const {findEmail, createUser, createSeller, selectUsers, allUser, updateImgUsers, findID, updateCust, updateSeller} = require('../models/users');
+const {findEmail, createUser, createSeller, selectUsers, allUser, updateImgUsers, findID, updateCust} = require('../models/users');
 const commonHelper = require('../helper/common');
 const authHelper = require('../helper/auth');
 
