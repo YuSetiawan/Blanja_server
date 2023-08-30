@@ -8,11 +8,11 @@ const selectAll = ({limit, offset, sort, sortby}) => {
   ORDER BY ${sortby} ${sort} LIMIT ${limit} OFFSET ${offset}`);
 };
 const select = (id) => {
-  return Pool.query(`SELECT * FROM address WHERE id='${id}'`);
+  return Pool.query(`SELECT * FROM address WHERE users_id='${id}'`);
 };
 const insert = (data) => {
-  const {id, name, address_as, address, phone, postal_code, city} = data;
-  return Pool.query(`INSERT INTO address (id, name, address_as,  address,  phone, postal_code, city) VALUES('${id}','${name}','${address_as}','${address}','${phone}','${postal_code}', '${city}')`);
+  const {id, name, address_as, address, phone, postal_code, city, users_id} = data;
+  return Pool.query(`INSERT INTO address (id, name, address_as,  address,  phone, postal_code, city, users_id) VALUES('${id}','${name}','${address_as}','${address}','${phone}','${postal_code}', '${city}', '${users_id}')`);
 };
 const update = (data) => {
   const {id, name, address_as, address, phone, postal_code, city} = data;

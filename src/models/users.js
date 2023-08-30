@@ -59,6 +59,16 @@ const updateImgUsers = (data) => {
   return Pool.query(`UPDATE users SET photo = '${photo}' WHERE id = '${id}'`);
 };
 
+const updateCust = (data) => {
+  const {id, fullname, email, phone, store_name} = data;
+  return Pool.query(`UPDATE users SET fullname = '${fullname}', email = '${email}' , phone = '${phone}', store_name = '${store_name}' WHERE id = '${id}'`);
+};
+
+// const updateSeller = (data) => {
+//   const {id, fullname, email, phone, store_name} = data;
+//   return Pool.query(`UPDATE users SET fullname = '${fullname}', email = '${email}' , phone = '${phone}', store_name = '${store_name}' WHERE id = '${id}'`);
+// };
+
 const allUser = () => {
   return Pool.query(`SELECT * FROM users`);
 };
@@ -70,5 +80,7 @@ module.exports = {
   allUser,
   selectUsers,
   updateImgUsers,
+  updateCust,
+  updateSeller,
   findID,
 };

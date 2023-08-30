@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 const cloudinary = require('../middlewares/cloudinary');
-const {findEmail, createUser, createSeller, selectUsers, allUser, updateImgUsers, findID} = require('../models/users');
+const {findEmail, createUser, createSeller, selectUsers, allUser, updateImgUsers, findID, updateCust, updateSeller} = require('../models/users');
 const commonHelper = require('../helper/common');
 const authHelper = require('../helper/auth');
 
@@ -119,6 +119,30 @@ const userController = {
     } = await findEmail(email);
     delete user.password;
     commonHelper.response(res, user, 200);
+  },
+
+  updateCustInfo: async (req, res) => {
+    try {
+      const {fullname, email, phone, store_name} = req.body;
+      const id = String(req.params.id);
+      const {rowCount} = await findID(id);
+      if (!rowCount) {
+        res.json({message: 'ID Not Found'});
+      }
+      const data = {
+        id,
+        fullname,
+        email,
+        phone,
+        store_name,
+      };
+
+      updateCust(data)
+        .then((result) => commonHelper.response(res, result.rows, 200, 'Update Info Success'))
+        .catch((err) => res.send(err));
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   updateImg: async (req, res) => {

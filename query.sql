@@ -40,6 +40,7 @@ CREATE TABLE order_table (
 CREATE TABLE address (
     id VARCHAR PRIMARY KEY,
     name VARCHAR(50), 
+    users_id VARCHAR,
     address_as VARCHAR(250), 
     address VARCHAR(250), 
     phone VARCHAR(20), 
@@ -54,7 +55,7 @@ INSERT INTO address (name, address_as, address, phone, postal_code, city)
 VALUES ('John Doe', 'home', '123 Main Street', '123-456-7890', '12345', 'Cityville');
 
 
-ALTER TABLE users ADD photo VARCHAR;
+ALTER TABLE address ADD users_id VARCHAR;
 
 ALTER TABLE product
 ADD CONSTRAINT users_id FOREIGN KEY (users_id) REFERENCES users (id);

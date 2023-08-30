@@ -8,6 +8,7 @@ router
   .get('/profile', userController.profile)
   .get('/:id', userController.getselectUsers)
   .put('/profile/:id', upload, userController.updateImg)
+  .put('/customer/:id', userController.updateCustInfo)
   .post('/register', userController.register)
   .post('/registerSeller', userController.registerSeller)
   .post('/login', userController.login)

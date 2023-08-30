@@ -41,6 +41,7 @@ const shippingAddressController = {
     const data = {
       id,
       name,
+      users_id,
       address_as,
       address,
       phone,
@@ -63,6 +64,7 @@ const shippingAddressController = {
       const data = {
         id,
         name,
+        users_id,
         address_as,
         address,
         phone,
