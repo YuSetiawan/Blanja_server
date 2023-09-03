@@ -36,7 +36,7 @@ const shippingAddressController = {
       .catch((err) => res.send(err));
   },
   insertShippingAddress: async (req, res) => {
-    const {name, address_as, address, phone, postal_code, city} = req.body;
+    const {name, users_id, address_as, address, phone, postal_code, city} = req.body;
     const id = uuidv4();
     const data = {
       id,
@@ -56,7 +56,7 @@ const shippingAddressController = {
   updateShippingAddress: async (req, res) => {
     try {
       const id = String(req.params.id);
-      const {name, address_as, address, phone, postal_code, city} = req.body;
+      const {name, users_id, address_as, address, phone, postal_code, city} = req.body;
       const {rowCount} = await findId(id);
       if (!rowCount) {
         return next(createError(403, 'ID is Not Found'));

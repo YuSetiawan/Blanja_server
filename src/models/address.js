@@ -15,8 +15,8 @@ const insert = (data) => {
   return Pool.query(`INSERT INTO address (id, name, address_as,  address,  phone, postal_code, city, users_id) VALUES('${id}','${name}','${address_as}','${address}','${phone}','${postal_code}', '${city}', '${users_id}')`);
 };
 const update = (data) => {
-  const {id, name, address_as, address, phone, postal_code, city} = data;
-  return Pool.query(`UPDATE address SET name='${name}', address_as='${address_as}', address='${address}' ,phone='${phone}' ,postal_code='${postal_code}', city='${city}' WHERE id='${id}'`);
+  const {id, name, users_id, address_as, address, phone, postal_code, city} = data;
+  return Pool.query(`UPDATE address SET name='${name}', users_id='${users_id}' address_as='${address_as}', address='${address}' ,phone='${phone}' ,postal_code='${postal_code}', city='${city}' WHERE id='${id}'`);
 };
 const deleteData = (id) => {
   return Pool.query(`DELETE FROM address WHERE id='${id}'`);
