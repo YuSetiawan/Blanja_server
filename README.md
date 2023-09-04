@@ -7,9 +7,9 @@
   <p align="center">
     <a href="https://github.com/YuSetiawan/Blanja_server"><strong>Explore the docs »</strong></a>
     <br />
-    <a href="">View Demo</a>
+    <a href="https://blanja-client-tau.vercel.app/home">View Demo</a>
     ·
-    <a href="https://stormy-moth-tuxedo.cyclic.app//">Api Demo</a>
+    <a href="https://stormy-moth-tuxedo.cyclic.app/">Api Demo</a>
   </p>
 </p>
 
@@ -106,6 +106,6 @@ API endpoint list are also available as published postman documentation
 
 :rocket: [`Frontend Blanja`](https://github.com/YuSetiawan/Blanja_client)
 
-:rocket: [`Demo Blanja`]()
+:rocket: [`Demo Blanja`](https://blanja-client-tau.vercel.app/home)
 
 Project link : [Blanja Server](https://github.com/YuSetiawan/Blanja_server)
