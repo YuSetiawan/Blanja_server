@@ -9,9 +9,9 @@ const selectAllOrder = ({limit, offset, sort, sortby}) => {
 };
 
 const selectOrder = (id_user) => {
-  return Pool.query(`SELECT order_list.id_order, order_list.size, product.name, order_list.quantity_order, product.price, product.price*order_list.quantity_order AS total_price, product.photo
+  return Pool.query(`SELECT order_list.id_order, order_list.size, product.name, product.id AS id_product, order_list.quantity_order, product.price, product.price*order_list.quantity_order AS total_price, product.photo
   FROM order_list
-  INNER JOIN product ON order_list.id_product = product.id WHERE id_user = '${id_user}'`);
+  LEFT JOIN product ON order_list.id_product = product.id WHERE id_user = '${id_user}'`);
 };
 
 const insertOrder = (data) => {
