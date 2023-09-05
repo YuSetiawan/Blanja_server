@@ -1,6 +1,5 @@
 -- Active: 1689169208636@@127.0.0.1@5432@authentication
 
-
 CREATE TABLE users(
     id VARCHAR PRIMARY KEY,
     email VARCHAR NOT NULL,
@@ -21,7 +20,7 @@ CREATE TABLE product(
     photo VARCHAR NOT NULL,
     description VARCHAR NOT NULL,
 );
-
+ALTER TABLE product
 
 CREATE TABLE category(
     id VARCHAR PRIMARY KEY,
