@@ -2,8 +2,7 @@ const Pool = require('../config/db');
 
 const selectAllOrder = ({limit, offset, sort, sortby}) => {
   return Pool.query(`SELECT order_list.id_order,order_list.size,order_list.quantity_order,product.name,product.photo,users.id
-  FROM order_list
-  JOIN product ON order_list.id_product = product.id
+  FROM order_list JOIN product ON order_list.id_product = product.id
   JOIN users ON order_list.id_user = users.id
     ORDER BY ${sortby} ${sort} LIMIT ${limit} OFFSET ${offset}`);
 };
